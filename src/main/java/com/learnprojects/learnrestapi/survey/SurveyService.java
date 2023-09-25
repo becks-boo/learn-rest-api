@@ -91,4 +91,12 @@ public class SurveyService {
 
         return questionId;
     }
+
+    public void updateSurveyQuestion(String surveyId, String questionId, Question question) {
+        List<Question> surveyQuestions = retrieveAllSurveyQuestions(surveyId);
+
+        surveyQuestions.removeIf(q -> q.getId().equalsIgnoreCase(questionId));
+
+        surveyQuestions.add(question);
+    }
 }
