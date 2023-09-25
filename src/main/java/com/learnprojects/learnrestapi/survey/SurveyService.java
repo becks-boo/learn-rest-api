@@ -53,10 +53,10 @@ public class SurveyService {
     }
 
     public Question retrieveSurveyQuestionById(String surveyId, String questionId) {
-        List<Question> questions = retrieveAllSurveyQuestions(surveyId);
+        List<Question> surveyQuestions = retrieveAllSurveyQuestions(surveyId);
 
-        Predicate<? super Question> predicate = question -> question.getId().equalsIgnoreCase(questionId);
-        Optional<Question> optionalQuestion = questions.stream().filter(predicate).findFirst();
+        Optional<Question> optionalQuestion = surveyQuestions.stream()
+                .filter(q -> q.getId().equalsIgnoreCase(questionId)).findFirst();
 
         return optionalQuestion.orElse(null);
     }
