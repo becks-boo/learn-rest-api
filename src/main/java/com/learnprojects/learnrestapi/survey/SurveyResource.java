@@ -23,8 +23,8 @@ public class SurveyResource {
     }
 
     @RequestMapping("/surveys/{surveyId}")
-    public Survey retrieveSurveyById(@PathVariable String surveyId) {
-        Survey survey = surveyService.retrieveSurveyById(surveyId);
+    public Survey retrieveSpecificSurvey(@PathVariable String surveyId) {
+        Survey survey = surveyService.retrieveSpecificSurvey(surveyId);
 
         if (survey == null) throw new ResponseStatusException(HttpStatus.NOT_FOUND);
         return survey;
