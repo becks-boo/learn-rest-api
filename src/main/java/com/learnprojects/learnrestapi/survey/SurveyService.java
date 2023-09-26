@@ -38,7 +38,7 @@ public class SurveyService {
         return surveys;
     }
 
-    public Survey retrieveSurveyById(String surveyId) {
+    public Survey retrieveSpecificSurvey(String surveyId) {
         Predicate<? super Survey> predicate = survey -> survey.getId().equalsIgnoreCase(surveyId);
 
         Optional<Survey> optionalSurvey = surveys.stream().filter(predicate).findFirst();
@@ -47,7 +47,7 @@ public class SurveyService {
     }
 
     public List<Question> retrieveAllSurveyQuestions(String surveyId) {
-        Survey survey = retrieveSurveyById(surveyId);
+        Survey survey = retrieveSpecificSurvey(surveyId);
 
         if (survey == null) return null;
 
