@@ -15,6 +15,8 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 public class SurveyResourceIT {
     private static String SPECIFIC_QUESTION_URL = "/surveys/Survey1/questions/Question1";
     private static String ALL_QUESTIONS_URL = "/surveys/Survey1/questions";
+    private static String SPECIFIC_SURVEY_URL = "/surveys/Survey1";
+    private static String ALL_SURVEYS_URL = "/surveys";
     @Autowired
     private TestRestTemplate template;
 
@@ -66,6 +68,38 @@ public class SurveyResourceIT {
                      "id": "Question3"
                    }
                  ]
+                 """;
+
+        JSONAssert.assertEquals(expectedResponse, responseEntity.getBody(), false);
+    }
+
+    @Test
+    void retrieveAllSurveys_basicScenario() throws JSONException {
+        ResponseEntity<String> responseEntity = template.getForEntity(ALL_SURVEYS_URL,
+                String.class);
+
+        String expectedResponse = """
+                [
+                  {
+                    "id": "Survey1"
+                  }
+                ]
+                 """;
+
+        JSONAssert.assertEquals(expectedResponse, responseEntity.getBody(), false);
+    }
+
+    @Test
+    void retrieveSpecificSurvey_basicScenario() throws JSONException {
+        ResponseEntity<String> responseEntity = template.getForEntity(SPECIFIC_SURVEY_URL,
+                String.class);
+
+        String expectedResponse = """
+                {
+                  "id": "Survey1",
+                  "title": "My Favorite Survey",
+                  "description": "Description of the Survey"
+                }
                  """;
 
         JSONAssert.assertEquals(expectedResponse, responseEntity.getBody(), false);
