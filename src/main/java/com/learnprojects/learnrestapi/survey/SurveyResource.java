@@ -31,7 +31,7 @@ public class SurveyResource {
     }
 
     @RequestMapping("/surveys/{surveyId}/questions")
-    public List<Question> retrieveSpecificSurveyQuestion(@PathVariable String surveyId) {
+    public List<Question> retrieveAllSurveyQuestions(@PathVariable String surveyId) {
         List<Question> questions = surveyService.retrieveAllSurveyQuestions(surveyId);
 
         if (questions == null) throw new ResponseStatusException(HttpStatus.NOT_FOUND);
@@ -40,8 +40,8 @@ public class SurveyResource {
     }
 
     @RequestMapping("/surveys/{surveyId}/questions/{questionId}")
-    public Question retrieveSpecificSurveyQuestion(@PathVariable String surveyId,
-                                                   @PathVariable String questionId) {
+    public Question retrieveAllSurveyQuestions(@PathVariable String surveyId,
+                                               @PathVariable String questionId) {
         Question question = surveyService.retrieveSurveyQuestionById(surveyId, questionId);
 
         if (question == null) throw new ResponseStatusException(HttpStatus.NOT_FOUND);
